@@ -4,9 +4,9 @@
     <arg name = "rosbagEnable" default= "false" />
 
     <node
-        pkg="turtlebot_roomba"
-        name="roomba"
-        type="roomba"
+        pkg="roombarobotvacuumcleaner"
+        name="roombaRobot"
+        type="roombaRobot"
         output="screen"
     />
 
