@@ -1,6 +1,8 @@
 <launch>
 
-    <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch"></include>
+    <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
+        <arg name="world_file" value="$(find roombarobotvacuumcleaner)/environment/env.world"/>
+    </include>
     <arg name = "rosbagEnable" default= "false" />
 
     <node

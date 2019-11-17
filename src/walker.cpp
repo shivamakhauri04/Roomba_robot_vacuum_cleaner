@@ -66,10 +66,10 @@ void Walker::walk() {
       // stop linear motion and begin angular velocity of 
       // turtlebot to avoid collision
       msg.linear.x = 0.0;
-      msg.angular.z = 1.0;
+      msg.angular.z = 3.0;
     } else {
       // if no obstacle move straight
-      msg.linear.x = 0.2;
+      msg.linear.x = 0.5;
       msg.angular.z = 0.0;
     }
     // publish the new velocities
