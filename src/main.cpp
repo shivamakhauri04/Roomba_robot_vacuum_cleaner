@@ -1,16 +1,13 @@
 /**
 Copyright [MIT] 2019 Shivam Akhauri
-
 Permission is hereby granted, free of charge, to any person obtaining a copy of 
 this software and associated documentation files (the "Software"), to deal in 
 the Software without restriction, including without limitation the rights to 
 use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
  the Software, and to permit persons to whom the Software is furnished to do so,
  subject to the following conditions:
-
 The above copyright notice and this permission notice shall be included in all 
 copies or substantial portions of the Software.
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR 
@@ -27,7 +24,6 @@ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
 */
 
 #include <ros/ros.h>
-#include "depthCalculator.hpp"
 #include "walker.hpp"
 
 /**
@@ -37,17 +33,12 @@ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
 * @brief main function 
 */ 
 
-
-int main(int argc, char** argv) {
-  // create the node
+int main(int argc, char* argv[]) {
+  // initializes roombaRobot package
   ros::init(argc, argv, "roombaRobot");
-  if (!ros::isInitialized()) {
-    ROS_FATAL_STREAM("The Ros node for RoombaRobot has not initialized");
-  }
-  
-
+  // Object initialisation
+  Walker robotCleaner;
+  // Start the turtlebot movement
+  robotCleaner.walk();
   return 0;
 }
-
-
-

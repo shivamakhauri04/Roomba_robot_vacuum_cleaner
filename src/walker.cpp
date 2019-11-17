@@ -1,16 +1,13 @@
 /**
 Copyright [MIT] 2019 Shivam Akhauri
-
 Permission is hereby granted, free of charge, to any person obtaining a copy of 
 this software and associated documentation files (the "Software"), to deal in 
 the Software without restriction, including without limitation the rights to 
 use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
  the Software, and to permit persons to whom the Software is furnished to do so,
  subject to the following conditions:
-
 The above copyright notice and this permission notice shall be included in all 
 copies or substantial portions of the Software.
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR 
@@ -26,24 +23,58 @@ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
 * @author Shivam Akhauri 
 * @date 14 November 2019
 * @copyright 2019 Shivam Akhauri
-* @brief publishes the velocities to the turtlebot to move around
-* changes velocities(direction) if the collision flag is received as 1
+* @brief publishes the velocities to the turtlebot 
+* to move around changes angular velocity(direction) 
+* if the collision flag is received as 1
 */
 
 #include "walker.hpp"
 
-walker::walker() {
+Walker::Walker() {
+  velocity = nh.advertise <geometry_msgs::Twist>
+ ("/mobile_base/commands/velocity", 1000);
+  distanceList = nh.subscribe <sensor_msgs::LaserScan>
+ ("/scan", 50, &DepthCalculation::findLaserDepth, &depth);
 
+  msg.linear.x = 0.0;
+  msg.linear.y = 0.0;
+  msg.linear.z = 0.0;
+  msg.angular.x = 0.0;
+  msg.angular.y = 0.0;
+  msg.angular.z = 0.0;
+  // publish velocity values for turtlebot
+  velocity.publish(msg);
 }
 
-walker::~walker() {
-
+Walker::~Walker() {
+  // stop the robot motion
+  msg.linear.x = 0.0;
+  msg.linear.y = 0.0;
+  msg.linear.z = 0.0;
+  msg.angular.x = 0.0;
+  msg.angular.y = 0.0;
+  msg.angular.z = 0.0;
+  velocity.publish(msg);
 }
 
-void walker::walk() {
-
-
+void Walker::walk() {
+  // set loop rate
+  ros::Rate loop_rate(10);
+  while (ros::ok()) {
+    // check for obstacle
+    if (depth.flagCollision()) {
+      // stop linear motion and begin angular velocity of 
+      // turtlebot to avoid collision
+      msg.linear.x = 0.0;
+      msg.angular.z = 1.0;
+    } else {
+      // if no obstacle move straight
+      msg.linear.x = 0.2;
+      msg.angular.z = 0.0;
+    }
+    // publish the new velocities
+    velocity.publish(msg);
+    ros::spinOnce();
+    loop_rate.sleep();
+  }
 }
-
-
-

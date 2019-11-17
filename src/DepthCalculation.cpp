@@ -1,16 +1,13 @@
 /**
 Copyright [MIT] 2019 Shivam Akhauri
-
 Permission is hereby granted, free of charge, to any person obtaining a copy of 
 this software and associated documentation files (the "Software"), to deal in 
 the Software without restriction, including without limitation the rights to 
 use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
  the Software, and to permit persons to whom the Software is furnished to do so,
  subject to the following conditions:
-
 The above copyright notice and this permission notice shall be included in all 
 copies or substantial portions of the Software.
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR 
@@ -20,28 +17,36 @@ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
 **/
 
 /**
-* @file walker.cpp
+* @file DepthCalculation.cpp
 * @author Shivam Akhauri 
 * @date 14 November 2019
 * @copyright 2019 Shivam Akhauri
 * @brief Calculates the distance of the obstacles from the 
-* turtlebot. Uses laserscan to find depth
+* turtlebot. Uses laserscan to find depth.
 */
 
-#include "depthCalculator.hpp"
+#include <iostream>
+#include "DepthCalculation.hpp"
 
-depthCalculator::depthCalculator() {
-    flagCollsion = false;
-}
-depthCalculator::~depthCalculator(){
-
+DepthCalculation::DepthCalculation() {
+  collisionStatus = false;
 }
 
-bool depthCalculator::checkCollision() {
-    return flagCollsion;
+DepthCalculation::~DepthCalculation() {
 }
 
-void depthCalculator::readLaserScan(const sensor_msgs::LaserScan::ConstPtr& msg) {
-
+void DepthCalculation::findLaserDepth(const sensor_msgs::LaserScan::ConstPtr& msg) {
+  for (auto temp:msg->ranges) {
+    if (msg->ranges[temp] < 0.8) {
+      collisionStatus = true;
+      return;
+    }
+  }
+  collisionStatus = false;
 }
+
+bool DepthCalculation::flagCollision() {
+  return collisionStatus;
+}
+
 

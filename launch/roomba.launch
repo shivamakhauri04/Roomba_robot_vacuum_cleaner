@@ -1,0 +1,18 @@
+<launch>
+
+    <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch"></include>
+    <arg name = "rosbagEnable" default= "false" />
+
+    <node
+        pkg="turtlebot_roomba"
+        name="roomba"
+        type="roomba"
+        output="screen"
+    />
+
+
+</launch>
+
+
+
+
