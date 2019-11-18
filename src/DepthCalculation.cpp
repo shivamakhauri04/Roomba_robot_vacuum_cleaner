@@ -29,6 +29,7 @@ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
 #include "DepthCalculation.hpp"
 
 DepthCalculation::DepthCalculation() {
+  // set the collision flag as false by default
   collisionStatus = false;
 }
 
@@ -39,6 +40,7 @@ void DepthCalculation::findLaserDepth
 (const sensor_msgs::LaserScan::ConstPtr& msg) {
   for (auto temp : msg->ranges) {
     if (msg->ranges[temp] < 0.8) {
+      // if obstacle close, raise flag
       collisionStatus = true;
       return;
     }
@@ -47,6 +49,7 @@ void DepthCalculation::findLaserDepth
 }
 
 bool DepthCalculation::flagCollision() {
+  // return obstacle status
   return collisionStatus;
 }
 

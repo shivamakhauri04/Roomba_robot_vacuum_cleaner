@@ -35,7 +35,7 @@ Walker::Walker() {
  ("/mobile_base/commands/velocity", 1000);
   distanceList = nh.subscribe <sensor_msgs::LaserScan>
  ("/scan", 50, &DepthCalculation::findLaserDepth, &depth);
-
+  // initialize the velocities
   msg.linear.x = 0.0;
   msg.linear.y = 0.0;
   msg.linear.z = 0.0;
@@ -75,6 +75,7 @@ void Walker::walk() {
     // publish the new velocities
     velocity.publish(msg);
     ros::spinOnce();
+    // slows the frequency
     loop_rate.sleep();
   }
 }
