@@ -26,7 +26,7 @@ ros-kinetic-turtlebot-apps ros-kinetic-turtlebot-rviz-launchers
 ```
 
 ## Demo Steps
-1. cd <catkin_workspace/src/>
+1. cd <catkin_workspace/>
 2. source devel/setup.bash
 3. roslaunch roombarobotvacuumcleaner roomba.launch
 4. press Ctrl+C to end roslaunch
@@ -44,6 +44,7 @@ https://drive.google.com/file/d/1CM6UJL2xRyoI-KjTSuUw9KpxpUmoZPZn/view?usp=shari
 1. cd <catkin_workspace/src/>
 2 .source devel/setup.bash
 3. roslaunch roombarobotvacuumcleaner roomba.launch record_flag:="true"
+4. Press ctrl+ C
 Note: The <argument> is "false" by default. If one wants to record again, use "true".
 ```
 
