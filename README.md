@@ -1,4 +1,4 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/shivamakhauri04/Roomba_robot_vacuum_cleaner/blob/Week12_HW/LICENSE.txt)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/shivamakhauri04/Roomba_robot_vacuum_cleaner/blob/master/LICENSE.txt)
 # Roomba_robot_vacuum_cleaner
 
 ## Overview
