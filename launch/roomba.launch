@@ -3,7 +3,7 @@
     <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
         <arg name="world_file" value="$(find roombarobotvacuumcleaner)/environment/env.world"/>
     </include>
-    <arg name = "rosbagEnable" default= "false" />
+    <arg name = "record_flag" default= "false" />
 
     <node
         pkg="roombarobotvacuumcleaner"
@@ -12,6 +12,12 @@
         output="screen"
     />
 
+    <node
+        pkg= "rosbag"
+        name="record"
+        type="record"
+        args="-a -x /camera/(.*) -O $(find roombarobotvacuumcleaner)/results/roombatopics.bag"
+        if="$(eval record_flag == true)"/>
 
 </launch>
 
