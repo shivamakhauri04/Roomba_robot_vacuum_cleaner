@@ -3,6 +3,7 @@
 
 ## Overview
 This project involves a turtlebot which can move around the room to clean the room. It has collision avoidance behaviour and is developed using high quality C++ code.
+The turtlebot moves in the room with linear velocity. When it comes close to a obstacle, the linear velocity is made 0 and the robot is made to turn, with non zero angular velocity.
 
 ## Pre- Requisites:
 1. Ros Kinetic
@@ -43,7 +44,7 @@ https://drive.google.com/file/d/1CM6UJL2xRyoI-KjTSuUw9KpxpUmoZPZn/view?usp=shari
 1. cd <catkin_workspace/src/>
 2 .source devel/setup.bash
 3. roslaunch roombarobotvacuumcleaner roomba.launch record_flag:="true"
-Note: The <argument> is "false" by default. If one wants to record the tf_broadcaster again, use "true".
+Note: The <argument> is "false" by default. If one wants to record again, use "true".
 ```
 
 ## To inspect Rosbag
