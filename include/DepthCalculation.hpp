@@ -25,6 +25,9 @@ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
 * using the laserscan 
 */
 
+#ifndef INCLUDE_DEPTHCALCULATION_HPP_
+#define INCLUDE_DEPTHCALCULATION_HPP_
+
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
 #include "sensor_msgs/LaserScan.h"
@@ -77,4 +80,7 @@ class DepthCalculation {
   */
   bool flagCollision();
 };
+
+#endif  // INCLUDE_DEPTHCALCULATION_HPP_
+
 

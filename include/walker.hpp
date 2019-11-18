@@ -25,6 +25,9 @@ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
 * to receive depth information and publish velocities accordingly
 */
 
+#ifndef INCLUDE_WALKER_HPP_
+#define INCLUDE_WALKER_HPP_
+
 #include <ros/ros.h>
 #include <iostream>
 #include "geometry_msgs/Twist.h"
@@ -73,3 +76,6 @@ class Walker {
     */
     void walk();
 };
+
+#endif  // INCLUDE_WALKER_HPP_
+

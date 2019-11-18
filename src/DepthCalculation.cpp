@@ -35,8 +35,9 @@ DepthCalculation::DepthCalculation() {
 DepthCalculation::~DepthCalculation() {
 }
 
-void DepthCalculation::findLaserDepth(const sensor_msgs::LaserScan::ConstPtr& msg) {
-  for (auto temp:msg->ranges) {
+void DepthCalculation::findLaserDepth
+(const sensor_msgs::LaserScan::ConstPtr& msg) {
+  for (auto temp : msg->ranges) {
     if (msg->ranges[temp] < 0.8) {
       collisionStatus = true;
       return;

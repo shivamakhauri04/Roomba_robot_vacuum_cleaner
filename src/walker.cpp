@@ -63,7 +63,7 @@ void Walker::walk() {
   while (ros::ok()) {
     // check for obstacle
     if (depth.flagCollision()) {
-      // stop linear motion and begin angular velocity of 
+      // stop linear motion and begin angular velocity of
       // turtlebot to avoid collision
       msg.linear.x = 0.0;
       msg.angular.z = 3.0;
